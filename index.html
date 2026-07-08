@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meu código LivUp</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FAF3E6;
+    --ink:#2B2118;
+    --red:#D2274B;
+    --red-dark:#A81D3B;
+    --teal:#06A895;
+    --gold:#E8A33D;
+    --paper:#FFFDF8;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--cream);
+    background-image:
+      radial-gradient(circle at 15% 8%, rgba(210,39,75,0.08) 0, transparent 40%),
+      radial-gradient(circle at 85% 92%, rgba(6,168,149,0.10) 0, transparent 45%);
+    font-family:'Work Sans', sans-serif;
+    color:var(--ink);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    padding:32px 18px 60px;
+  }
+  .page{
+    width:100%;
+    max-width:420px;
+  }
+  .eyebrow{
+    text-align:center;
+    font-size:13px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--teal);
+    font-weight:600;
+    margin-bottom:10px;
+  }
+  h1{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:800;
+    font-size:38px;
+    line-height:1.05;
+    text-align:center;
+    margin:0 0 12px;
+    color:var(--ink);
+  }
+  h1 span{color:var(--red);}
+  .sub{
+    text-align:center;
+    font-size:16px;
+    line-height:1.5;
+    color:#5b5148;
+    margin:0 auto 30px;
+    max-width:340px;
+  }
+  .sub b{color:var(--ink);}
+
+  /* Ticket / cupom */
+  .ticket{
+    background:var(--paper);
+    border-radius:22px;
+    box-shadow:0 18px 40px rgba(43,33,24,0.14);
+    overflow:hidden;
+    position:relative;
+    margin-bottom:26px;
+  }
+  .ticket-top{
+    background:var(--red);
+    color:#fff;
+    padding:22px 26px 26px;
+    text-align:center;
+  }
+  .ticket-top .amount{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:800;
+    font-size:30px;
+    line-height:1;
+  }
+  .ticket-top .amount small{
+    display:block;
+    font-family:'Work Sans', sans-serif;
+    font-weight:500;
+    font-size:13px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    margin-top:6px;
+    opacity:0.9;
+  }
+  .perforation{
+    position:relative;
+    height:0;
+    border-top:2.5px dashed rgba(43,33,24,0.18);
+    margin:0 22px;
+  }
+  .perforation::before,.perforation::after{
+    content:"";
+    position:absolute;
+    top:-13px;
+    width:26px;
+    height:26px;
+    background:var(--cream);
+    border-radius:50%;
+  }
+  .perforation::before{left:-35px;}
+  .perforation::after{right:-35px;}
+
+  .ticket-bottom{
+    padding:26px 26px 28px;
+    text-align:center;
+  }
+  .code-label{
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:#8a8074;
+    font-weight:600;
+    margin-bottom:10px;
+  }
+  .code-row{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    background:#F3EDE0;
+    border:1.5px dashed var(--gold);
+    border-radius:14px;
+    padding:14px 16px;
+  }
+  .code{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:24px;
+    letter-spacing:0.05em;
+    color:var(--ink);
+  }
+  .copy-btn{
+    border:none;
+    background:var(--ink);
+    color:#fff;
+    font-family:'Work Sans',sans-serif;
+    font-weight:600;
+    font-size:14px;
+    padding:10px 16px;
+    border-radius:999px;
+    cursor:pointer;
+    transition:background .15s ease, transform .1s ease;
+    white-space:nowrap;
+  }
+  .copy-btn:hover{background:var(--red-dark);}
+  .copy-btn:active{transform:scale(0.96);}
+  .copy-btn.copied{background:var(--teal);}
+
+  .share-btn{
+    display:block;
+    width:100%;
+    margin-top:16px;
+    border:none;
+    background:var(--teal);
+    color:#fff;
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:17px;
+    padding:15px 16px;
+    border-radius:14px;
+    cursor:pointer;
+    text-decoration:none;
+    text-align:center;
+  }
+  .share-btn:active{transform:scale(0.98);}
+
+  .how{
+    background:transparent;
+    padding:6px 4px 0;
+  }
+  .how-title{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:15px;
+    text-align:center;
+    margin-bottom:16px;
+    color:var(--ink);
+  }
+  .step{
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+    margin-bottom:14px;
+  }
+  .step-num{
+    flex:0 0 auto;
+    width:26px;height:26px;
+    border-radius:50%;
+    background:var(--red);
+    color:#fff;
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size:13px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .step p{
+    margin:2px 0 0;
+    font-size:14.5px;
+    line-height:1.45;
+    color:#4a4137;
+  }
+  footer{
+    text-align:center;
+    font-size:12px;
+    color:#a89e90;
+    margin-top:30px;
+  }
+</style>
+</head>
+<body>
+  <div class="page">
+    <div class="eyebrow">Indicação LivUp</div>
+    <h1>Sai um <span>desconto</span><br>no capricho</h1>
+    <p class="sub">Use meu código e ganhe <b>15% de desconto</b> no seu primeiro pedido na LivUp.</p>
+
+    <div class="ticket">
+      <div class="ticket-top">
+        <div class="amount">15% OFF<small>no primeiro pedido</small></div>
+      </div>
+      <div class="perforation"></div>
+      <div class="ticket-bottom">
+        <div class="code-label">Código de indicação</div>
+        <div class="code-row">
+          <span class="code" id="code">JUL6808512A</span>
+          <button class="copy-btn" id="copyBtn" onclick="copyCode()">Copiar</button>
+        </div>
+      </div>
+    </div>
+
+    <a class="share-btn" id="shareBtn" href="#" onclick="shareCode(event)">Compartilhar código</a>
+
+    <div class="how">
+      <div class="how-title">Como funciona</div>
+      <div class="step">
+        <div class="step-num">1</div>
+        <p>Copie o código acima e aplique no cadastro ou checkout do app da LivUp.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <p>Faça seu primeiro pedido e o desconto de 15% entra automaticamente.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <p>É só isso — o desconto é seu, sem pegadinha.</p>
+      </div>
+    </div>
+
+  </div>
+
+<script>
+function copyCode(){
+  const code = document.getElementById('code').textContent.trim();
+  navigator.clipboard.writeText(code).then(()=>{
+    const btn = document.getElementById('copyBtn');
+    btn.textContent = 'Copiado!';
+    btn.classList.add('copied');
+    setTimeout(()=>{
+      btn.textContent = 'Copiar';
+      btn.classList.remove('copied');
+    }, 1800);
+  });
+}
+
+function shareCode(e){
+  e.preventDefault();
+  const code = document.getElementById('code').textContent.trim();
+  const text = `Use meu código ${code} e ganhe 15% de desconto no seu primeiro pedido na LivUp! ${window.location.href}`;
+  if(navigator.share){
+    navigator.share({title:'Desconto LivUp', text, url: window.location.href}).catch(()=>{});
+  } else {
+    navigator.clipboard.writeText(text);
+    const btn = document.getElementById('shareBtn');
+    const original = btn.textContent;
+    btn.textContent = 'Link copiado!';
+    setTimeout(()=>{btn.textContent = original;}, 1800);
+  }
+}
+</script>
+</body>
+</html>
